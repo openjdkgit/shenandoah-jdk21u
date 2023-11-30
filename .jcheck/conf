@@ -1,5 +1,5 @@
 [general]
-project=jdk-updates
+project=shenandoah
 jbs=JDK
 version=21.0.2
 
