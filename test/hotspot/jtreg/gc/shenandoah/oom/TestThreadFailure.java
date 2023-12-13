@@ -79,7 +79,7 @@ public class TestThreadFailure {
         {
             ProcessBuilder pb = ProcessTools.createJavaProcessBuilder(
                     "-Xmx32m",
-                    "-XX:+UnlockExperimentalVMOptions", "-XX:ShenandoahNoProgressThreshold=12",
+                    "-XX:+UnlockExperimentalVMOptions",
                     "-XX:+UseShenandoahGC", "-XX:ShenandoahGCMode=generational",
                     TestThreadFailure.class.getName(),
                     "test");
