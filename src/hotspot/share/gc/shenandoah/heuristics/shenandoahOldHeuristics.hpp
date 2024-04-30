@@ -125,8 +125,7 @@ private:
   void trigger_collection_if_overgrown();
 
  protected:
-  virtual void choose_collection_set_from_regiondata(ShenandoahCollectionSet* set, RegionData* data, size_t data_size,
-                                                     size_t free) override;
+  void choose_collection_set_from_regiondata(ShenandoahCollectionSet* set, RegionData* data, size_t data_size, size_t free) override;
 
 public:
   explicit ShenandoahOldHeuristics(ShenandoahOldGeneration* generation, ShenandoahGenerationalHeap* gen_heap);
@@ -202,7 +201,7 @@ public:
 
   bool is_experimental() override;
 
- private:
+private:
   void slide_pinned_regions_to_front();
   bool all_candidates_are_pinned();
 };
