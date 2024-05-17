@@ -715,4 +715,3 @@ void ShenandoahGenerationalHeap::coalesce_and_fill_old_regions(bool concurrent) 
   workers()->run_task(&coalesce);
   old_generation()->set_parseable(true);
 }
-
