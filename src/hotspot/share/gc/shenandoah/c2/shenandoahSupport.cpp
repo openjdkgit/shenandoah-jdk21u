@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2015, 2021, Red Hat, Inc. All rights reserved.
  * Copyright (C) 2022 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -385,6 +386,12 @@ void ShenandoahBarrierC2Support::verify(RootNode* root) {
           verify_type t;
         } args[6];
       } calls[] = {
+        "array_partition_stub",
+        { { TypeFunc::Parms, ShenandoahStore }, { TypeFunc::Parms+4, ShenandoahStore },   { -1, ShenandoahNone },
+          { -1, ShenandoahNone },                { -1, ShenandoahNone },                  { -1, ShenandoahNone } },
+        "arraysort_stub",
+        { { TypeFunc::Parms, ShenandoahStore },  { -1, ShenandoahNone },                  { -1, ShenandoahNone },
+          { -1,  ShenandoahNone},                 { -1,  ShenandoahNone},                 { -1,  ShenandoahNone} },
         "aescrypt_encryptBlock",
         { { TypeFunc::Parms, ShenandoahLoad },   { TypeFunc::Parms+1, ShenandoahStore },  { TypeFunc::Parms+2, ShenandoahLoad },
           { -1,  ShenandoahNone},                 { -1,  ShenandoahNone},                 { -1,  ShenandoahNone} },
@@ -2167,7 +2174,7 @@ void MemoryGraphFixer::collect_memory_nodes() {
           assert(m != nullptr || (c->is_Loop() && j == LoopNode::LoopBackControl && iteration == 1) || _phase->C->has_irreducible_loop() || has_never_branch(_phase->C->root()), "expect memory state");
           if (m != nullptr) {
             if (m == prev_region && ((c->is_Loop() && j == LoopNode::LoopBackControl) || (prev_region->is_Phi() && prev_region->in(0) == c))) {
-              assert(c->is_Loop() && j == LoopNode::LoopBackControl || _phase->C->has_irreducible_loop() || has_never_branch(_phase->C->root()), "");
+              assert((c->is_Loop() && j == LoopNode::LoopBackControl) || _phase->C->has_irreducible_loop() || has_never_branch(_phase->C->root()), "");
               // continue
             } else if (unique == nullptr) {
               unique = m;
