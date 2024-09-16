@@ -43,11 +43,11 @@ public class TestWrongBarrierEnable {
         String[] iu = {
                 "ShenandoahSATBBarrier",
         };
-        String[] generational = { 
-                "ShenandoahCardBarrier" 
+        String[] generational = {
+                "ShenandoahCardBarrier"
         };
-        String[] all = { 
-                "ShenandoahSATBBarrier", "ShenandoahCardBarrier" 
+        String[] all = {
+                "ShenandoahSATBBarrier", "ShenandoahCardBarrier"
         };
 
         shouldFailAll("-XX:ShenandoahGCHeuristics=adaptive",   concurrent);
